@@ -49,6 +49,19 @@ servo1.ChangeDutyCycle(2)
 time.sleep(0.5)
 servo1.ChangeDutyCycle(0)
 
+#fungsi untuk mengubah derajat 
+def setAngle(angle):
+    min_duty = 2
+    max_duty = 12
+    
+    duty1 = min_duty + (angle / 180.0) * (max_duty - min_duty)
+    
+    servo1.ChangeDutyCycle(duty1)
+
+    time.sleep(0.05)
+    servo1.ChangeDutyCycle(0)
+    time.sleep(0.05)
+
 #Clean things up at the end
 servo1.stop()
 GPIO.cleanup()
