@@ -1,9 +1,26 @@
-//DHT
+import time
+import board
+import adafruit_dht
 
-import Adafruit_DHT
+dhtDevice = adafruit_dht.DHT22(board.D17)
 
-sensor = Adafruit_DHT.DHT22
- 
 while True:
-   humidity, temperature = Adafruit_DHT.read_retry(22, 4)
-   print ('Temp: {0:0.1f} C  Humidity: {1:0.1f} %'.format(temperature, humidity))
+    try:
+        temperature_c = dhtDevice.temperature
+        temperature_f = temperature_c * (9 / 5) + 32
+        humidity = dhtDevice.humidity
+        print(
+            "Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(
+                temperature_f, temperature_c, humidity
+            )
+        )
+
+    except RuntimeError as error:
+        print(error.args[0])
+        time.sleep(2.0)
+        continue
+    except Exception as error:
+        dhtDevice.exit()
+        raise error
+
+    time.sleep(2.0)
