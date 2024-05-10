@@ -2,7 +2,7 @@ from RPLCD.i2c import CharLCD
 import time
 
 # Set up the LCD using the address found with i2cdetect
-lcd = CharLCD('PCF8574', "ALAMAT LCD")
+lcd = CharLCD('PCF8574', ALAMAT LCD)
 
 while True:
     # Clear the display
