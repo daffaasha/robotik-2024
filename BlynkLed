@@ -1,0 +1,29 @@
+import BlynkLib
+from time import sleep
+import RPi.GPIO as GPIO
+import time
+import random
+
+BLYNK_AUTH = 'CARI AUTH PADA AKUN BLYNK'
+
+#LED Button Buzzer
+# Initialize Blynk
+blynk = BlynkLib.Blynk(BLYNK_AUTH)
+
+print("Blynk Connected!")
+
+@blynk.on("V1")  # virtual pin V5 untuk switch
+def v4_handler(value):
+    blynk.virtual_write(1, value)
+
+@blynk.on("V1")  # virtual pin V5 untuk switch
+def v1_handler(value):
+    print(value[0])
+    #menerima data dari v1
+
+while True:
+    rand_int = random.randint(1, 1000)
+    v4_handler(rand_int)
+    print(rand_int)
+    sleep(1)
+    blynk.run()
