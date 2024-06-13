@@ -9,6 +9,11 @@ BLYNK_AUTH = 'CARI AUTH PADA AKUN BLYNK'
 #LED Button Buzzer
 # Initialize Blynk
 blynk = BlynkLib.Blynk(BLYNK_AUTH)
+GPIO.setmode(GPIO.BCM)
+
+#setup led
+GPIO.setup(18, GPIO.OUT)
+
 
 print("Blynk Connected!")
 
@@ -19,6 +24,7 @@ def v4_handler(value):
 @blynk.on("V1")  # virtual pin V5 untuk switch
 def v1_handler(value):
     print(value[0])
+    GPIO.output(18, value[0])
     #menerima data dari v1
 
 while True:
