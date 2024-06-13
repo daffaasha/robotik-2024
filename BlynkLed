@@ -20,7 +20,8 @@ print("Blynk Connected!")
 @blynk.on("V1")
 def v1_handler(value):
     print(value[0])
-    GPIO.output(18, value[0])
+    values= int(value[0])
+    GPIO.output(18, values)
     #menerima data dari v1
 
 while True:
